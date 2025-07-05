@@ -1,0 +1,5 @@
+build-essential
+cmake
+clang-format
+clang-tidy
+ninja-build
