@@ -2,12 +2,13 @@
  * @file Vec2.hpp
  * @brief Header file for the Vec2 class, representing a 2D vector.
  */
-#ifndef VEC2_HPP
-#define VEC2_HPP
+#ifndef LINALG_VEC2_HPP
+#define LINALG_VEC2_HPP
 
 #include <cmath>
 #include <immintrin.h>
 #include <iostream>
+#include <limits>
 #include <stdexcept>
 
 #include "Alignment.hpp"
@@ -22,7 +23,7 @@ namespace linalg {
  * @brief Generic 2D vector class (Vec2).
  * @tparam T The type of the elements in the vector (e.g., float, double).
  */
-template <typename T> struct alignas(linalg::VecAlignment<T, 2>::value) Vec2 {
+template <typename T> struct alignas(linalg::VecAlignment<T, 2>::VALUE) Vec2 {
   T x;
   T y;
 
@@ -38,14 +39,16 @@ template <typename T> struct alignas(linalg::VecAlignment<T, 2>::value) Vec2 {
   constexpr explicit Vec2(T value) noexcept : x(value), y(value) {}
 
   /**
-   * @brief Constructor that initializes the vector with specific x and y values.
+   * @brief Constructor that initializes the vector with specific x and y
+   * values.
    * @param x The x component of the vector.
    * @param y The y component of the vector.
    */
   constexpr Vec2(T x, T y) noexcept : x(x), y(y) {}
 
   /**
-   * @brief Constructor that initializes the vector from another Vec2 of a different type.
+   * @brief Constructor that initializes the vector from another Vec2 of a
+   * different type.
    * @param other The Vec2 of a different type to copy from.
    * @tparam U The type of the other Vec2.
    */
@@ -130,7 +133,8 @@ template <typename T> struct alignas(linalg::VecAlignment<T, 2>::value) Vec2 {
   /**
    * @brief Performs an element-wise multiplication with a scalar.
    * @param scalar The scalar value to multiply with.
-   * @return A new Vec2 object containing the product of each component with the scalar.
+   * @return A new Vec2 object containing the product of each component with the
+   * scalar.
    */
   constexpr Vec2 operator*(T scalar) const noexcept { return {x * scalar, y * scalar}; }
 
@@ -148,7 +152,8 @@ template <typename T> struct alignas(linalg::VecAlignment<T, 2>::value) Vec2 {
   /**
    * @brief Performs an element-wise division by a scalar.
    * @param scalar The scalar value to divide by.
-   * @return A new Vec2 object containing the result of dividing each component by the scalar.
+   * @return A new Vec2 object containing the result of dividing each component
+   * by the scalar.
    */
   constexpr Vec2 operator/(T scalar) const { return {x / scalar, y / scalar}; }
 
@@ -210,7 +215,8 @@ template <typename T> struct alignas(linalg::VecAlignment<T, 2>::value) Vec2 {
   }
 
   /**
-   * @brief Checks if this vector is approximately equal to another Vec2 within a given epsilon.
+   * @brief Checks if this vector is approximately equal to another Vec2 within
+   * a given epsilon.
    * @param other The Vec2 to compare with.
    * @param epsilon The tolerance for comparison.
    * @return True if the vectors are approximately equal, false otherwise.
@@ -224,13 +230,15 @@ template <typename T> struct alignas(linalg::VecAlignment<T, 2>::value) Vec2 {
    * @brief Returns the minimum value of the vector components.
    * @return The minimum value among the x and y components.
    */
-  static constexpr Vec2 min() noexcept { return {std::numeric_limits<T>::lowest(), std::numeric_limits<T>::lowest()}; }
+  static constexpr Vec2 MinBounds() noexcept {
+    return {std::numeric_limits<T>::lowest(), std::numeric_limits<T>::lowest()};
+  }
 
   /**
    * @brief Returns the maximum value of the vector components.
    * @return The maximum value among the x and y components.
    */
-  static constexpr Vec2 max() noexcept { return {std::numeric_limits<T>::max(), std::numeric_limits<T>::max()}; }
+  static constexpr Vec2 MaxBounds() noexcept { return {std::numeric_limits<T>::max(), std::numeric_limits<T>::max()}; }
 };
 
 // GCOVR_EXCL_START
@@ -252,4 +260,4 @@ using Vec2d = Vec2<double>;
 
 } // namespace linalg
 
-#endif // VEC2_HPP
+#endif // LINALG_VEC2_HPP

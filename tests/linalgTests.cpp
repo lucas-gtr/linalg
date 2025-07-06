@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include "linalg.hpp"
+#include "linalg/linalg.hpp"
 
 using namespace linalg;
 

@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
-#include "Mat3.hpp"
-#include "Vec3.hpp"
+#include "linalg/Mat3.hpp"
+#include "linalg/Vec3.hpp"
 
 using namespace linalg;
 

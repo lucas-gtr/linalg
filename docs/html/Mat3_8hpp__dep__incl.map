@@ -1,8 +1,8 @@
-<map id="/home/lucasgtr/linalg/include/Mat3.hpp" name="/home/lucasgtr/linalg/include/Mat3.hpp">
-<area shape="rect" id="Node000001" title="Header file for the Mat3 class, representing a 3x3 matrix." alt="" coords="64,5,223,45"/>
-<area shape="rect" id="Node000002" href="$Mat4_8hpp.html" title="Header file for the Mat3 class, representing a 3x3 matrix." alt="" coords="5,93,164,133"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="125,58,100,95,95,92,121,55"/>
-<area shape="rect" id="Node000003" href="$linalg_8hpp.html" title="Linear algebra utility functions for vectors and matrices." alt="" coords="64,181,223,221"/>
-<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="165,57,179,93,182,113,179,134,170,160,158,182,153,180,165,158,174,133,177,113,174,94,160,58"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="107,143,133,180,128,183,103,146"/>
+<map id="/home/lucasgtr/linalg/include/linalg/Mat3.hpp" name="/home/lucasgtr/linalg/include/linalg/Mat3.hpp">
+<area shape="rect" id="Node000001" title="Header file for the Mat3 class, representing a 3x3 matrix." alt="" coords="68,5,247,45"/>
+<area shape="rect" id="Node000002" href="$Mat4_8hpp.html" title="Header file for the Mat3 class, representing a 3x3 matrix." alt="" coords="5,93,184,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="137,58,111,95,106,92,133,55"/>
+<area shape="rect" id="Node000003" href="$linalg_8hpp.html" title="Linear algebra utility functions for vectors and matrices." alt="" coords="67,181,248,221"/>
+<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="182,56,199,93,202,113,199,134,188,160,174,182,170,179,183,158,193,133,197,113,193,94,177,58"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="119,143,146,180,141,183,115,146"/>
 </map>

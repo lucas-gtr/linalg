@@ -13,17 +13,15 @@ function(run_clang_format)
     set(CLANG_FORMAT_TARGET_FILES)
 
     if(FILES_TO_CHECK STREQUAL "")
-      file(GLOB_RECURSE src_cpp_files "${CMAKE_SOURCE_DIR}/src/*.cpp")
       file(GLOB_RECURSE include_hpp_files "${CMAKE_SOURCE_DIR}/include/*.hpp")
 
       list(APPEND CLANG_FORMAT_TARGET_FILES
-          ${src_cpp_files}
           ${include_hpp_files}
       )
     else()
         separate_arguments(FILES_TO_CHECK)
         foreach(file IN LISTS FILES_TO_CHECK)
-            if(file MATCHES ".*\\.cpp$" OR file MATCHES ".*\\.hpp$")
+            if(file MATCHES ".*\\.hpp$")
                 if(NOT IS_ABSOLUTE "${file}")
                     get_filename_component(abs_file "${CMAKE_SOURCE_DIR}/${file}" ABSOLUTE)
                 else()
@@ -35,7 +33,7 @@ function(run_clang_format)
                     message(WARNING "Specified file '${file}' does not exist. Skipping.")
                 endif()
             else()
-                message(WARNING "Specified file '${file}' extension is not .cpp or .hpp. Skipping.")
+                message(WARNING "Specified file '${file}' extension is not .hpp. Skipping.")
             endif()
         endforeach()
     endif()

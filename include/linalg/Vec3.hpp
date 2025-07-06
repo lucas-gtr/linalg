@@ -2,12 +2,13 @@
  * @file Vec3.hpp
  * @brief Header file for the Vec3 class, representing a 3D vector.
  */
-#ifndef VEC3_HPP
-#define VEC3_HPP
+#ifndef LINALG_VEC3_HPP
+#define LINALG_VEC3_HPP
 
 #include <cmath>
 #include <immintrin.h>
 #include <iostream>
+#include <limits>
 #include <stdexcept>
 
 #include "Alignment.hpp"
@@ -22,7 +23,7 @@ namespace linalg {
  * @brief Generic 3D vector class (Vec3).
  * @tparam T The type of the elements in the vector (e.g., float, double).
  */
-template <typename T> struct alignas(linalg::VecAlignment<T, 3>::value) Vec3 {
+template <typename T> struct alignas(linalg::VecAlignment<T, 3>::VALUE) Vec3 {
   T x;
   T y;
   T z;
@@ -38,7 +39,8 @@ template <typename T> struct alignas(linalg::VecAlignment<T, 3>::value) Vec3 {
   constexpr explicit Vec3(T value) noexcept : x(value), y(value), z(value) {}
 
   /**
-   * @brief Constructor that initializes the vector with specific x, y, and z values.
+   * @brief Constructor that initializes the vector with specific x, y, and z
+   * values.
    * @param x The x component of the vector.
    * @param y The y component of the vector.
    * @param z The z component of the vector.
@@ -46,7 +48,8 @@ template <typename T> struct alignas(linalg::VecAlignment<T, 3>::value) Vec3 {
   constexpr Vec3(T x, T y, T z) noexcept : x(x), y(y), z(z) {}
 
   /**
-   * @brief Constructor that initializes the vector from another Vec3 of a different type.
+   * @brief Constructor that initializes the vector from another Vec3 of a
+   * different type.
    * @param other The Vec3 of a different type to copy from.
    * @tparam U The type of the other Vec3.
    */
@@ -74,7 +77,8 @@ template <typename T> struct alignas(linalg::VecAlignment<T, 3>::value) Vec3 {
   }
 
   /**
-   * @brief Returns a reference to the element at the specified index (0, 1, or 2).
+   * @brief Returns a reference to the element at the specified index (0, 1, or
+   * 2).
    * @param index The index of the element (0 for x, 1 for y, 2 for z).
    * @return A reference to the element at the specified index.
    * @throws std::out_of_range if the index is not 0, 1, or 2.
@@ -93,7 +97,8 @@ template <typename T> struct alignas(linalg::VecAlignment<T, 3>::value) Vec3 {
   }
 
   /**
-   * @brief Negates the vector, returning a new Vec3 with each component negated.
+   * @brief Negates the vector, returning a new Vec3 with each component
+   * negated.
    * @return A new Vec3 object with negated components.
    */
   constexpr Vec3 operator-() const noexcept { return {-x, -y, -z}; }
@@ -101,7 +106,8 @@ template <typename T> struct alignas(linalg::VecAlignment<T, 3>::value) Vec3 {
   /**
    * @brief Performs an element-wise addition of this vector and another Vec3.
    * @param other The Vec3 to add.
-   * @return A new Vec3 object that is the sum of this vector and the other vector.
+   * @return A new Vec3 object that is the sum of this vector and the other
+   * vector.
    */
   constexpr Vec3 operator+(const Vec3& other) const noexcept { return {x + other.x, y + other.y, z + other.z}; }
 
@@ -118,9 +124,11 @@ template <typename T> struct alignas(linalg::VecAlignment<T, 3>::value) Vec3 {
   }
 
   /**
-   * @brief Performs an element-wise subtraction of this vector and another Vec3.
+   * @brief Performs an element-wise subtraction of this vector and another
+   * Vec3.
    * @param other The Vec3 to subtract.
-   * @return A new Vec3 object that is the difference of this vector and the other vector.
+   * @return A new Vec3 object that is the difference of this vector and the
+   * other vector.
    */
   constexpr Vec3 operator-(const Vec3& other) const noexcept { return {x - other.x, y - other.y, z - other.z}; }
 
@@ -139,7 +147,8 @@ template <typename T> struct alignas(linalg::VecAlignment<T, 3>::value) Vec3 {
   /**
    * @brief Multiplies this vector by a scalar, returning a new Vec3.
    * @param scalar The scalar value to multiply with.
-   * @return A new Vec3 object containing the product of each component with the scalar.
+   * @return A new Vec3 object containing the product of each component with the
+   * scalar.
    */
   constexpr Vec3 operator*(T scalar) const noexcept { return {x * scalar, y * scalar, z * scalar}; }
 
@@ -158,7 +167,8 @@ template <typename T> struct alignas(linalg::VecAlignment<T, 3>::value) Vec3 {
   /**
    * @brief Divides this vector by a scalar, returning a new Vec3.
    * @param scalar The scalar value to divide by.
-   * @return A new Vec3 object containing the result of dividing each component by the scalar.
+   * @return A new Vec3 object containing the result of dividing each component
+   * by the scalar.
    */
   constexpr Vec3 operator/(T scalar) const {
     return {x / scalar, y / scalar, z / scalar}; // division by zero is undefined
@@ -233,7 +243,8 @@ template <typename T> struct alignas(linalg::VecAlignment<T, 3>::value) Vec3 {
 
   /**
    * @brief Computes an element-wise inverse of the vector.
-   * @return A new Vec3 object where each component is the inverse of the corresponding component of this vector.
+   * @return A new Vec3 object where each component is the inverse of the
+   * corresponding component of this vector.
    */
   constexpr Vec3 cwiseInverse() const noexcept { return {1.0 / x, 1.0 / y, 1.0 / z}; }
 
@@ -250,7 +261,8 @@ template <typename T> struct alignas(linalg::VecAlignment<T, 3>::value) Vec3 {
   constexpr T maxValue() const noexcept { return std::fmax(std::fmax(x, y), z); }
 
   /**
-   * @brief Checks if this vector is approximately equal to another Vec3 within a given epsilon.
+   * @brief Checks if this vector is approximately equal to another Vec3 within
+   * a given epsilon.
    * @param other The Vec3 to compare with.
    * @param epsilon The tolerance for comparison.
    * @return True if the vectors are approximately equal, false otherwise.
@@ -263,7 +275,7 @@ template <typename T> struct alignas(linalg::VecAlignment<T, 3>::value) Vec3 {
    * @brief Returns the minimum value of the vector components.
    * @return The minimum value among the x, y, and z components.
    */
-  static constexpr Vec3 min() noexcept {
+  static constexpr Vec3 MinBounds() noexcept {
     return {std::numeric_limits<T>::lowest(), std::numeric_limits<T>::lowest(), std::numeric_limits<T>::lowest()};
   }
 
@@ -271,7 +283,7 @@ template <typename T> struct alignas(linalg::VecAlignment<T, 3>::value) Vec3 {
    * @brief Returns the maximum value of the vector components.
    * @return The maximum value among the x, y, and z components.
    */
-  static constexpr Vec3 max() noexcept {
+  static constexpr Vec3 MaxBounds() noexcept {
     return {std::numeric_limits<T>::max(), std::numeric_limits<T>::max(), std::numeric_limits<T>::max()};
   }
 };
@@ -295,4 +307,4 @@ using Vec3d = Vec3<double>;
 
 } // namespace linalg
 
-#endif // VEC3_HPP
+#endif // LINALG_VEC3_HPP

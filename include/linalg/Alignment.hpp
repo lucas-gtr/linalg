@@ -2,8 +2,8 @@
  * @file Alignment.hpp
  * @brief Defines alignment constants for vector and matrix types.
  */
-#ifndef ALIGNMENT_HPP
-#define ALIGNMENT_HPP
+#ifndef LINALG_ALIGNMENT_HPP
+#define LINALG_ALIGNMENT_HPP
 
 #include <cstddef>
 
@@ -15,9 +15,9 @@ namespace linalg {
  * @tparam T The type of the vector elements (e.g., float, double).
  * @tparam N The number of elements in the vector (e.g., 2, 3, 4).
  *
- * This struct is specialized for different types and sizes of vectors to provide
- * the appropriate alignment values. The alignment is typically based on the size
- * of the vector elements and the number of elements in the vector.
+ * This struct is specialized for different types and sizes of vectors to
+ * provide the appropriate alignment values. The alignment is typically based on
+ * the size of the vector elements and the number of elements in the vector.
  */
 template <typename T, int N> struct VecAlignment;
 
@@ -27,7 +27,7 @@ template <typename T, int N> struct VecAlignment;
  * @tparam 2 The number of elements in the vector.
  */
 template <> struct VecAlignment<float, 2> {
-  static constexpr size_t value = 16;
+  static constexpr size_t VALUE = 16;
 };
 
 /**
@@ -36,7 +36,7 @@ template <> struct VecAlignment<float, 2> {
  * @tparam 2 The number of elements in the vector.
  */
 template <> struct VecAlignment<double, 2> {
-  static constexpr size_t value = 16;
+  static constexpr size_t VALUE = 16;
 };
 
 /**
@@ -45,7 +45,7 @@ template <> struct VecAlignment<double, 2> {
  * @tparam 3 The number of elements in the vector.
  */
 template <> struct VecAlignment<float, 3> {
-  static constexpr size_t value = 16;
+  static constexpr size_t VALUE = 16;
 };
 
 /**
@@ -54,7 +54,7 @@ template <> struct VecAlignment<float, 3> {
  * @tparam 3 The number of elements in the vector.
  */
 template <> struct VecAlignment<double, 3> {
-  static constexpr size_t value = 32;
+  static constexpr size_t VALUE = 32;
 };
 
 /**
@@ -63,7 +63,7 @@ template <> struct VecAlignment<double, 3> {
  * @tparam 4 The number of elements in the vector.
  */
 template <> struct VecAlignment<float, 4> {
-  static constexpr size_t value = 16;
+  static constexpr size_t VALUE = 16;
 };
 
 /**
@@ -72,7 +72,7 @@ template <> struct VecAlignment<float, 4> {
  * @tparam 4 The number of elements in the vector.
  */
 template <> struct VecAlignment<double, 4> {
-  static constexpr size_t value = 32;
+  static constexpr size_t VALUE = 32;
 };
 
 /**
@@ -89,11 +89,11 @@ template <typename T, int N> struct MatAlignment;
  * @tparam 2 The number of rows/columns in the matrix.
  */
 template <> struct MatAlignment<float, 3> {
-  static constexpr size_t value = 16;
+  static constexpr size_t VALUE = 16;
 };
 
 template <> struct MatAlignment<double, 3> {
-  static constexpr size_t value = 32;
+  static constexpr size_t VALUE = 32;
 };
 
 /**
@@ -102,7 +102,7 @@ template <> struct MatAlignment<double, 3> {
  * @tparam 4 The number of rows/columns in the matrix.
  */
 template <> struct MatAlignment<float, 4> {
-  static constexpr size_t value = 16;
+  static constexpr size_t VALUE = 16;
 };
 
 /**
@@ -111,9 +111,9 @@ template <> struct MatAlignment<float, 4> {
  * @tparam 4 The number of rows/columns in the matrix.
  */
 template <> struct MatAlignment<double, 4> {
-  static constexpr size_t value = 32;
+  static constexpr size_t VALUE = 32;
 };
 
 } // namespace linalg
 
-#endif // ALIGNMENT_HPP
+#endif // LINALG_ALIGNMENT_HPP
