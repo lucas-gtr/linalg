@@ -2,8 +2,8 @@
  * @file Mat4.hpp
  * @brief Header file for the Mat3 class, representing a 3x3 matrix.
  */
-#ifndef MAT4_HPP
-#define MAT4_HPP
+#ifndef LINALG_MAT4_HPP
+#define LINALG_MAT4_HPP
 
 #include <array>
 #include <cmath>
@@ -13,6 +13,7 @@
 
 #include "Alignment.hpp"
 #include "Mat3.hpp"
+#include "Vec3.hpp"
 #include "Vec4.hpp"
 
 /**
@@ -25,7 +26,7 @@ namespace linalg {
  * @brief Generic 4x4 matrix class (row-major).
  * @tparam T The type of the elements in the matrix (e.g., float, double).
  */
-template <typename T> struct alignas(linalg::MatAlignment<T, 4>::value) Mat4 {
+template <typename T> struct alignas(linalg::MatAlignment<T, 4>::VALUE) Mat4 {
   std::array<std::array<T, 4>, 4> m{};
 
   /**
@@ -265,7 +266,8 @@ template <typename T> struct alignas(linalg::MatAlignment<T, 4>::value) Mat4 {
   }
 
   /**
-   * @brief Multiplies this matrix by another matrix and assigns the result to this matrix.
+   * @brief Multiplies this matrix by another matrix and assigns the result to
+   * this matrix.
    * @param other The matrix to multiply with.
    * @return A reference to this matrix after the multiplication.
    */
@@ -275,7 +277,8 @@ template <typename T> struct alignas(linalg::MatAlignment<T, 4>::value) Mat4 {
   }
 
   /**
-   * @brief Returns a 3x3 matrix containing the top-left 3x3 submatrix of this 4x4 matrix.
+   * @brief Returns a 3x3 matrix containing the top-left 3x3 submatrix of this
+   * 4x4 matrix.
    * @return A Mat3 object representing the top-left 3x3 submatrix.
    */
   Mat3<T> topLeft3x3() const {
@@ -283,7 +286,8 @@ template <typename T> struct alignas(linalg::MatAlignment<T, 4>::value) Mat4 {
   }
 
   /**
-   * @brief Checks if this matrix is approximately equal to another matrix within a given epsilon.
+   * @brief Checks if this matrix is approximately equal to another matrix
+   * within a given epsilon.
    * @param other The matrix to compare with.
    * @param epsilon The tolerance for comparison.
    * @return True if the matrices are approximately equal, false otherwise.
@@ -307,7 +311,8 @@ template <typename T> struct alignas(linalg::MatAlignment<T, 4>::value) Mat4 {
   static Mat4 Identity() { return Mat4{}; }
 
   /**
-   * @brief Returns a view matrix that transforms coordinates from world space to camera space.
+   * @brief Returns a view matrix that transforms coordinates from world space
+   * to camera space.
    * @param eye The position of the camera in world space.
    * @param center The point in world space that the camera is looking at.
    * @param up The up direction in world space.
@@ -315,36 +320,37 @@ template <typename T> struct alignas(linalg::MatAlignment<T, 4>::value) Mat4 {
    * @tparam T The type of the elements in the matrix.
    */
   static Mat4 LookAt(const Vec3<T>& eye, const Vec3<T>& center, const Vec3<T>& up) {
-    const Vec3<T> forward  = (center - eye).normalized();
-    const Vec3<T> side     = forward.cross(up).normalized();
-    const Vec3<T> upVector = side.cross(forward);
+    const Vec3<T> forward   = (center - eye).normalized();
+    const Vec3<T> side      = forward.cross(up).normalized();
+    const Vec3<T> up_vector = side.cross(forward);
 
-    Mat4 lookAtMatrix;
-    lookAtMatrix.m[0][0] = side.x;
-    lookAtMatrix.m[0][1] = side.y;
-    lookAtMatrix.m[0][2] = side.z;
-    lookAtMatrix.m[0][3] = -(side.x * eye.x + side.y * eye.y + side.z * eye.z);
+    Mat4 look_at_matrix;
+    look_at_matrix.m[0][0] = side.x;
+    look_at_matrix.m[0][1] = side.y;
+    look_at_matrix.m[0][2] = side.z;
+    look_at_matrix.m[0][3] = -(side.x * eye.x + side.y * eye.y + side.z * eye.z);
 
-    lookAtMatrix.m[1][0] = upVector.x;
-    lookAtMatrix.m[1][1] = upVector.y;
-    lookAtMatrix.m[1][2] = upVector.z;
-    lookAtMatrix.m[1][3] = -(upVector.x * eye.x + upVector.y * eye.y + upVector.z * eye.z);
+    look_at_matrix.m[1][0] = up_vector.x;
+    look_at_matrix.m[1][1] = up_vector.y;
+    look_at_matrix.m[1][2] = up_vector.z;
+    look_at_matrix.m[1][3] = -(up_vector.x * eye.x + up_vector.y * eye.y + up_vector.z * eye.z);
 
-    lookAtMatrix.m[2][0] = -forward.x;
-    lookAtMatrix.m[2][1] = -forward.y;
-    lookAtMatrix.m[2][2] = -forward.z;
-    lookAtMatrix.m[2][3] = (forward.x * eye.x + forward.y * eye.y + forward.z * eye.z);
+    look_at_matrix.m[2][0] = -forward.x;
+    look_at_matrix.m[2][1] = -forward.y;
+    look_at_matrix.m[2][2] = -forward.z;
+    look_at_matrix.m[2][3] = (forward.x * eye.x + forward.y * eye.y + forward.z * eye.z);
 
-    lookAtMatrix.m[3][0] = 0.0;
-    lookAtMatrix.m[3][1] = 0.0;
-    lookAtMatrix.m[3][2] = 0.0;
-    lookAtMatrix.m[3][3] = 1.0;
+    look_at_matrix.m[3][0] = 0.0;
+    look_at_matrix.m[3][1] = 0.0;
+    look_at_matrix.m[3][2] = 0.0;
+    look_at_matrix.m[3][3] = 1.0;
 
-    return lookAtMatrix;
+    return look_at_matrix;
   }
 
   /**
-   * @brief Returns a view matrix that transforms coordinates from world space to camera space.
+   * @brief Returns a view matrix that transforms coordinates from world space
+   * to camera space.
    * @param eye The position of the camera in world space.
    * @param center The point in world space that the camera is looking at.
    * @return A Mat4 object representing the view matrix.
@@ -353,9 +359,9 @@ template <typename T> struct alignas(linalg::MatAlignment<T, 4>::value) Mat4 {
   static Mat4 LookAt(const Vec3<T>& eye, const Vec3<T>& center) {
     const Vec3<T> forward = (center - eye).normalized();
 
-    const Vec3<T> upWorld = std::abs(forward.y) > 0.99 ? Vec3<T>(0.0, 0.0, 1.0) : Vec3<T>(0.0, 1.0, 0.0);
+    const Vec3<T> up_world = std::abs(forward.y) > 0.99 ? Vec3<T>(0.0, 0.0, 1.0) : Vec3<T>(0.0, 1.0, 0.0);
 
-    return LookAt(eye, center, upWorld);
+    return LookAt(eye, center, up_world);
   }
 
   /**
@@ -392,10 +398,10 @@ template <typename T> struct alignas(linalg::MatAlignment<T, 4>::value) Mat4 {
    * @tparam T The type of the elements in the matrix.
    */
   static Mat4 Perspective(T fovY, T aspect, T near, T far) {
-    T    invTanHalfFovY = 1.0 / std::tan(fovY / 2);
+    T    inv_tan_half_fov_y = 1.0 / std::tan(fovY / 2);
     Mat4 persp;
-    persp.m[0][0] = invTanHalfFovY / aspect;
-    persp.m[1][1] = invTanHalfFovY;
+    persp.m[0][0] = inv_tan_half_fov_y / aspect;
+    persp.m[1][1] = inv_tan_half_fov_y;
     persp.m[2][2] = -(far + near) / (far - near);
     persp.m[2][3] = -(2 * far * near) / (far - near);
     persp.m[3][2] = -1.0;
@@ -459,4 +465,4 @@ using Mat4f = Mat4<float>;
 
 } // namespace linalg
 
-#endif // MAT4_HPP
+#endif // LINALG_MAT4_HPP

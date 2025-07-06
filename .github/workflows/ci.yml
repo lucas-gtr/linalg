@@ -38,14 +38,11 @@ jobs:
           sudo apt-get update
           xargs -a dependencies.txt sudo apt-get install -y
 
-      - name: Configure CMake
-        run: cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -G Ninja
-
-      - name: Build
-        run: cmake --build build --parallel
+      - name: Configure tests
+        run: make configure
 
       - name: Run tests
-        run: ctest --test-dir build --output-on-failure
+        run: make run-tests
 
   lint:
     runs-on: ubuntu-latest

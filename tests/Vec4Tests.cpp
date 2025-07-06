@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include "Vec4.hpp"
+#include "linalg/Vec4.hpp"
 
 using namespace linalg;
 

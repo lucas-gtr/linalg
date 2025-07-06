@@ -2,12 +2,13 @@
  * @file Vec4.hpp
  * @brief Header file for the Vec4 class, representing a 4D vector.
  */
-#ifndef VEC4_HPP
-#define VEC4_HPP
+#ifndef LINALG_VEC4_HPP
+#define LINALG_VEC4_HPP
 
 #include <cmath>
 #include <immintrin.h>
 #include <iostream>
+#include <limits>
 #include <stdexcept>
 
 #include "Alignment.hpp"
@@ -22,7 +23,7 @@ namespace linalg {
  * @brief Generic 4D vector class (Vec4).
  * @tparam T The type of the elements in the vector (e.g., float, double).
  */
-template <typename T> struct alignas(linalg::VecAlignment<T, 4>::value) Vec4 {
+template <typename T> struct alignas(linalg::VecAlignment<T, 4>::VALUE) Vec4 {
   T x;
   T y;
   T z;
@@ -40,7 +41,8 @@ template <typename T> struct alignas(linalg::VecAlignment<T, 4>::value) Vec4 {
   constexpr explicit Vec4(T value) noexcept : x(value), y(value), z(value), w(value) {}
 
   /**
-   * @brief Constructor that initializes the vector with specific x, y, z, and w values.
+   * @brief Constructor that initializes the vector with specific x, y, z, and w
+   * values.
    * @param x The x component of the vector.
    * @param y The y component of the vector.
    * @param z The z component of the vector.
@@ -49,7 +51,8 @@ template <typename T> struct alignas(linalg::VecAlignment<T, 4>::value) Vec4 {
   constexpr Vec4(T x, T y, T z, T w) noexcept : x(x), y(y), z(z), w(w) {}
 
   /**
-   * @brief Constructor that initializes the vector from another Vec4 of a different type.
+   * @brief Constructor that initializes the vector from another Vec4 of a
+   * different type.
    * @param other The Vec4 of a different type to copy from.
    * @tparam U The type of the other Vec4.
    */
@@ -59,7 +62,8 @@ template <typename T> struct alignas(linalg::VecAlignment<T, 4>::value) Vec4 {
   }
 
   /**
-   * @brief Returns a copy of the element at the specified index (0, 1, 2, or 3).
+   * @brief Returns a copy of the element at the specified index (0, 1, 2, or
+   * 3).
    * @param index The index of the element (0 for x, 1 for y, 2 for z, 3 for w).
    * @return A copy of the element at the specified index.
    * @throws std::out_of_range if the index is not in the range [0, 3].
@@ -80,7 +84,8 @@ template <typename T> struct alignas(linalg::VecAlignment<T, 4>::value) Vec4 {
   }
 
   /**
-   * @brief Returns a reference to the element at the specified index (0, 1, 2, or 3).
+   * @brief Returns a reference to the element at the specified index (0, 1, 2,
+   * or 3).
    * @param index The index of the element (0 for x, 1 for y, 2 for z, 3 for w).
    * @return A reference to the element at the specified index.
    * @throws std::out_of_range if the index is not in the range [0, 3].
@@ -102,7 +107,8 @@ template <typename T> struct alignas(linalg::VecAlignment<T, 4>::value) Vec4 {
   }
 
   /**
-   * @brief Negates the vector, returning a new Vec4 with each component negated.
+   * @brief Negates the vector, returning a new Vec4 with each component
+   * negated.
    * @return A new Vec4 object with negated components.
    */
   constexpr Vec4 operator-() const noexcept { return {-x, -y, -z, -w}; }
@@ -110,7 +116,8 @@ template <typename T> struct alignas(linalg::VecAlignment<T, 4>::value) Vec4 {
   /**
    * @brief Adds two Vec4 vectors element-wise.
    * @param other The Vec4 to add.
-   * @return A new Vec4 object that is the sum of this vector and the other vector.
+   * @return A new Vec4 object that is the sum of this vector and the other
+   * vector.
    */
   constexpr Vec4 operator+(const Vec4& other) const noexcept {
     return {x + other.x, y + other.y, z + other.z, w + other.w};
@@ -174,7 +181,8 @@ template <typename T> struct alignas(linalg::VecAlignment<T, 4>::value) Vec4 {
   /**
    * @brief Divides this vector by a scalar, returning a new Vec4.
    * @param scalar The scalar value to divide by.
-   * @return A new Vec4 object that is the result of dividing each component by the scalar.
+   * @return A new Vec4 object that is the result of dividing each component by
+   * the scalar.
    */
   constexpr Vec4 operator/(T scalar) const { return {x / scalar, y / scalar, z / scalar, w / scalar}; }
 
@@ -253,7 +261,7 @@ template <typename T> struct alignas(linalg::VecAlignment<T, 4>::value) Vec4 {
    * @brief Returns the minimum value of the vector components.
    * @return The minimum value among the x, y, z, and w components.
    */
-  static constexpr Vec4 min() noexcept {
+  static constexpr Vec4 MinBounds() noexcept {
     return {std::numeric_limits<T>::lowest(), std::numeric_limits<T>::lowest(), std::numeric_limits<T>::lowest(),
             std::numeric_limits<T>::lowest()};
   }
@@ -262,7 +270,7 @@ template <typename T> struct alignas(linalg::VecAlignment<T, 4>::value) Vec4 {
    * @brief Returns the maximum value of the vector components.
    * @return The maximum value among the x, y, z, and w components.
    */
-  static constexpr Vec4 max() noexcept {
+  static constexpr Vec4 MaxBounds() noexcept {
     return {std::numeric_limits<T>::max(), std::numeric_limits<T>::max(), std::numeric_limits<T>::max(),
             std::numeric_limits<T>::max()};
   }
@@ -286,4 +294,4 @@ using Vec4d = Vec4<double>;
 
 } // namespace linalg
 
-#endif // VEC4_HPP
+#endif // LINALG_VEC4_HPP

@@ -2,8 +2,8 @@
  * @file linalg.hpp
  * @brief Linear algebra utility functions for vectors and matrices.
  */
-#ifndef LIN_HPP
-#define LIN_HPP
+#ifndef LINALG_LINALG_HPP
+#define LINALG_LINALG_HPP
 
 #include <cmath>
 
@@ -124,7 +124,8 @@ template <typename T> inline Vec4<T> cwiseMax(const Vec4<T>& a, const Vec4<T>& b
  * @param a The Vec2 vector to clamp.
  * @param min The minimum Vec2 vector.
  * @param max The maximum Vec2 vector.
- * @return A Vec2 vector with each component clamped between the corresponding components of min and max.
+ * @return A Vec2 vector with each component clamped between the corresponding
+ * components of min and max.
  */
 template <typename T> inline Vec2<T> cwiseClamp(const Vec2<T>& a, const Vec2<T>& min, const Vec2<T>& max) {
   return {cwiseMin(cwiseMax(a, min), max)};
@@ -135,7 +136,8 @@ template <typename T> inline Vec2<T> cwiseClamp(const Vec2<T>& a, const Vec2<T>&
  * @param a The Vec3 vector to clamp.
  * @param min The minimum Vec3 vector.
  * @param max The maximum Vec3 vector.
- * @return A Vec3 vector with each component clamped between the corresponding components of min and
+ * @return A Vec3 vector with each component clamped between the corresponding
+ * components of min and
  */
 template <typename T> inline Vec3<T> cwiseClamp(const Vec3<T>& a, const Vec3<T>& min, const Vec3<T>& max) {
   return {cwiseMin(cwiseMax(a, min), max)};
@@ -146,7 +148,8 @@ template <typename T> inline Vec3<T> cwiseClamp(const Vec3<T>& a, const Vec3<T>&
  * @param a The Vec4 vector to clamp.
  * @param min The minimum Vec4 vector.
  * @param max The maximum Vec4 vector.
- * @return A Vec4 vector with each component clamped between the corresponding components of min and max.
+ * @return A Vec4 vector with each component clamped between the corresponding
+ * components of min and max.
  */
 template <typename T> inline Vec4<T> cwiseClamp(const Vec4<T>& a, const Vec4<T>& min, const Vec4<T>& max) {
   return {cwiseMin(cwiseMax(a, min), max)};
@@ -184,7 +187,8 @@ template <typename T> inline Vec4<T> cwiseProduct(const Vec4<T>& a, const Vec4<T
  * @brief Returns the product of a Vec2 vector and a scalar.
  * @param scalar The scalar value to multiply with.
  * @param vec The Vec2 vector to multiply.
- * @return A Vec2 vector containing the product of each component with the scalar.
+ * @return A Vec2 vector containing the product of each component with the
+ * scalar.
  */
 template <typename T> inline Vec2<T> operator*(T scalar, const Vec2<T>& vec) {
   return {vec.x * scalar, vec.y * scalar};
@@ -194,7 +198,8 @@ template <typename T> inline Vec2<T> operator*(T scalar, const Vec2<T>& vec) {
  * @brief Returns the product of a Vec3 vector and a scalar.
  * @param scalar The scalar value to multiply with.
  * @param vec The Vec3 vector to multiply.
- * @return A Vec3 vector containing the product of each component with the scalar.
+ * @return A Vec3 vector containing the product of each component with the
+ * scalar.
  */
 template <typename T> inline Vec3<T> operator*(T scalar, const Vec3<T>& vec) {
   return {vec.x * scalar, vec.y * scalar, vec.z * scalar};
@@ -204,7 +209,8 @@ template <typename T> inline Vec3<T> operator*(T scalar, const Vec3<T>& vec) {
  * @brief Returns the product of a Vec4 vector and a scalar.
  * @param scalar The scalar value to multiply with.
  * @param vec The Vec4 vector to multiply.
- * @return A Vec4 vector containing the product of each component with the scalar.
+ * @return A Vec4 vector containing the product of each component with the
+ * scalar.
  */
 template <typename T> inline Vec4<T> operator*(T scalar, const Vec4<T>& vec) {
   return {vec.x * scalar, vec.y * scalar, vec.z * scalar, vec.w * scalar};
@@ -236,7 +242,8 @@ template <typename T> inline Vec4<T> operator*(const Mat4<T>& mat, const Vec4<T>
 }
 
 /**
- * @brief Returns a rotation matrix for the given angles around the x, y, and z axes.
+ * @brief Returns a rotation matrix for the given angles around the x, y, and z
+ * axes.
  * @param x_angle The angle in radians to rotate around the x-axis.
  * @param y_angle The angle in radians to rotate around the y-axis.
  * @param z_angle The angle in radians to rotate around the z-axis.
@@ -259,4 +266,4 @@ template <typename T> inline Mat3<T> getRotationMatrix(T x_angle, T y_angle, T z
 
 } // namespace linalg
 
-#endif // LINALG_HPP
+#endif // LINALG_LINALG_HPP

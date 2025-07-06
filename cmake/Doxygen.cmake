@@ -6,7 +6,7 @@ function(generate_doxygen_documentation)
         return()
     endif()
     
-    set(DOXYGEN_INPUT_DIR "${CMAKE_SOURCE_DIR}/src ${CMAKE_SOURCE_DIR}/include")
+    set(DOXYGEN_INPUT_DIR "${CMAKE_SOURCE_DIR}/include")
     set(DOXYGEN_OUTPUT_DIR "${CMAKE_SOURCE_DIR}/docs")
     set(DOXYGEN_CONFIG_IN "${CMAKE_SOURCE_DIR}/docs/Doxyfile.in" CACHE FILEPATH "Doxygen config template")
     set(DOXYGEN_CONFIG_OUT "${CMAKE_BINARY_DIR}/Doxyfile")

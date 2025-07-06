@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
-#include "Mat4.hpp"
-#include "Mat3.hpp"
+#include "linalg/Mat4.hpp"
+#include "linalg/Mat3.hpp"
 
 using namespace linalg;
 

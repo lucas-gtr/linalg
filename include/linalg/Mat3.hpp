@@ -2,8 +2,8 @@
  * @file Mat3.hpp
  * @brief Header file for the Mat3 class, representing a 3x3 matrix.
  */
-#ifndef MAT3_HPP
-#define MAT3_HPP
+#ifndef LINALG_MAT3_HPP
+#define LINALG_MAT3_HPP
 
 #include <array>
 #include <cmath>
@@ -25,7 +25,7 @@ namespace linalg {
  * @brief Generic 3x3 matrix class (row-major).
  * @tparam T The type of the elements in the matrix (e.g., float, double).
  */
-template <typename T> struct alignas(linalg::MatAlignment<T, 3>::value) Mat3 {
+template <typename T> struct alignas(linalg::MatAlignment<T, 3>::VALUE) Mat3 {
   std::array<std::array<T, 3>, 3> m{};
 
   /**
@@ -43,7 +43,8 @@ template <typename T> struct alignas(linalg::MatAlignment<T, 3>::value) Mat3 {
   /**
    * @brief Constructor that initializes the matrix with an initializer list.
    * @param list An initializer list containing the rows of the matrix.
-   * @throws std::invalid_argument if the initializer list does not have 3 rows or if any row does not have 3 elements.
+   * @throws std::invalid_argument if the initializer list does not have 3 rows
+   * or if any row does not have 3 elements.
    */
   Mat3(std::initializer_list<std::initializer_list<T>> list) {
     if(list.size() != 3) {
@@ -167,26 +168,26 @@ template <typename T> struct alignas(linalg::MatAlignment<T, 3>::value) Mat3 {
    *         If the determinant is zero, returns an identity matrix.
    */
   Mat3 inverse() const {
-    constexpr T EPSILON = 1e-6; // Small value to check for near-zero determinant
+    static constexpr T epsilon = 1e-6; // Small value to check for near-zero determinant
 
     const T det = determinant();
-    if(std::abs(det) < EPSILON) {
+    if(std::abs(det) < epsilon) {
       return Mat3{};
     }
-    const T invDet = 1.0 / det;
+    const T inv_det = 1.0 / det;
 
     Mat3 inv;
-    inv.m[0][0] = (m[1][1] * m[2][2] - m[1][2] * m[2][1]) * invDet;
-    inv.m[0][1] = -(m[0][1] * m[2][2] - m[0][2] * m[2][1]) * invDet;
-    inv.m[0][2] = (m[0][1] * m[1][2] - m[0][2] * m[1][1]) * invDet;
+    inv.m[0][0] = (m[1][1] * m[2][2] - m[1][2] * m[2][1]) * inv_det;
+    inv.m[0][1] = -(m[0][1] * m[2][2] - m[0][2] * m[2][1]) * inv_det;
+    inv.m[0][2] = (m[0][1] * m[1][2] - m[0][2] * m[1][1]) * inv_det;
 
-    inv.m[1][0] = -(m[1][0] * m[2][2] - m[1][2] * m[2][0]) * invDet;
-    inv.m[1][1] = (m[0][0] * m[2][2] - m[0][2] * m[2][0]) * invDet;
-    inv.m[1][2] = -(m[0][0] * m[1][2] - m[0][2] * m[1][0]) * invDet;
+    inv.m[1][0] = -(m[1][0] * m[2][2] - m[1][2] * m[2][0]) * inv_det;
+    inv.m[1][1] = (m[0][0] * m[2][2] - m[0][2] * m[2][0]) * inv_det;
+    inv.m[1][2] = -(m[0][0] * m[1][2] - m[0][2] * m[1][0]) * inv_det;
 
-    inv.m[2][0] = (m[1][0] * m[2][1] - m[1][1] * m[2][0]) * invDet;
-    inv.m[2][1] = -(m[0][0] * m[2][1] - m[0][1] * m[2][0]) * invDet;
-    inv.m[2][2] = (m[0][0] * m[1][1] - m[0][1] * m[1][0]) * invDet;
+    inv.m[2][0] = (m[1][0] * m[2][1] - m[1][1] * m[2][0]) * inv_det;
+    inv.m[2][1] = -(m[0][0] * m[2][1] - m[0][1] * m[2][0]) * inv_det;
+    inv.m[2][2] = (m[0][0] * m[1][1] - m[0][1] * m[1][0]) * inv_det;
 
     return inv;
   }
@@ -218,7 +219,8 @@ template <typename T> struct alignas(linalg::MatAlignment<T, 3>::value) Mat3 {
   }
 
   /**
-   * @brief Checks if this matrix is approximately equal to another matrix within a given epsilon.
+   * @brief Checks if this matrix is approximately equal to another matrix
+   * within a given epsilon.
    * @param other The matrix to compare with.
    * @param epsilon The tolerance for comparison.
    * @return True if the matrices are approximately equal, false otherwise.
@@ -290,4 +292,4 @@ using Mat3d = Mat3<double>;
 
 } // namespace linalg
 
-#endif // MAT3_HPP
+#endif // LINALG_MAT3_HPP
