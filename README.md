@@ -9,6 +9,10 @@
 - Utility functions like `getRotationMatrix`, `toVec3`, `toVec4`
 - Compact and readable code with no external dependencies
 
+## ✅ Requirements
+- C++11 or later
+- Standard library only (no third-party dependencies)
+
 ## 📦 Installation
 Simply copy the include/ folder into your project. The library is header-only — no need to build or link anything.
 
@@ -38,3 +42,8 @@ int main() {
     return 0;
 }
 ```
+
+## 📜 License
+
+This project is licensed under the MIT License.
+Feel free to use it in commercial or open-source software.
