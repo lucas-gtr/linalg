@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.16)
 
-set(PROJECT_TARGET_NAME Template)
+set(PROJECT_TARGET_NAME linalg)
 
 project(${PROJECT_TARGET_NAME}
     VERSION 0.0.1
@@ -18,11 +18,7 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 # Allow user-defined modules 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
 
-add_subdirectory(src/ModuleExample)
-
-add_executable(${PROJECT_TARGET_NAME} src/main.cpp 
-    src/SanitizerTests.cpp
-)
+add_executable(${PROJECT_TARGET_NAME} src/main.cpp)
 
 target_include_directories(${PROJECT_TARGET_NAME} PRIVATE
     ${CMAKE_SOURCE_DIR}/include
@@ -30,7 +26,6 @@ target_include_directories(${PROJECT_TARGET_NAME} PRIVATE
 
 target_link_libraries(${PROJECT_TARGET_NAME}
     PRIVATE
-        ModuleExample
 )
 
 # Options for professional dev workflow

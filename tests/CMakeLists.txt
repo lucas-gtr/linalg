@@ -5,7 +5,6 @@ file(GLOB TEST_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/*Tests.cpp")
 target_sources(UnitTests PRIVATE ${TEST_SOURCES})
 
 target_link_libraries(UnitTests PRIVATE 
-    ModuleExample
     gtest
     gtest_main
     gmock

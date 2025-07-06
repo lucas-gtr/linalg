@@ -15,7 +15,7 @@ SRC_DIR := src
 INCLUDE_DIR := include
 
 
-EXECUTABLE_NAME ?= Template
+EXECUTABLE_NAME ?= linalg
 TEST_EXECUTABLE_NAME ?= UnitTests
 
 # External tools (check availability at runtime)
@@ -59,7 +59,7 @@ configure:
 	@echo "Configuring build in $(BUILD_TYPE) mode..."
 	@cmake -S . -B $(BUILD_DIR) -DCMAKE_BUILD_TYPE=$(BUILD_TYPE) $(CMAKE_FLAGS)
 
-build: configure
+build:
 	@echo "Building project in $(BUILD_TYPE) mode..."
 	@cmake --build $(BUILD_DIR)
 
