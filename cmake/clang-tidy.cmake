@@ -40,8 +40,13 @@ function(run_clang_tidy FIX_LINT)
 
     list(REMOVE_DUPLICATES CLANG_TIDY_TARGET_FILES)
 
-    if(CLANG_TIDY_TARGET_FILES STREQUAL "")
-        message(STATUS "No source files found for clang-tidy.")
+    list(LENGTH CLANG_TIDY_TARGET_FILES num_files)
+    if(num_files EQUAL 0)
+        add_custom_target(run-clang-tidy
+            COMMAND ${CMAKE_COMMAND} -E echo "No source files found for clang-tidy. Skipping."
+            COMMENT "No source files to lint."
+            VERBATIM
+        )
         return()
     endif()
 

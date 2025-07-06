@@ -1,6 +1,9 @@
 var searchData=
 [
-  ['example_0',['Example',['../classExample.html',1,'']]],
-  ['example_2ecpp_1',['Example.cpp',['../Example_8cpp.html',1,'']]],
-  ['example_2ehpp_2',['Example.hpp',['../Example_8hpp.html',1,'']]]
+  ['cross_0',['cross',['../structlinalg_1_1Vec3.html#a722b6a97f066bed8254be384677041e3',1,'linalg::Vec3']]],
+  ['cwiseclamp_1',['cwiseclamp',['../namespacelinalg.html#a39a75512a01fc5f9926d0f61ee76d320',1,'linalg::cwiseClamp(const Vec2&lt; T &gt; &amp;a, const Vec2&lt; T &gt; &amp;min, const Vec2&lt; T &gt; &amp;max)'],['../namespacelinalg.html#a9a374fa900c1ad4c3b7e7c867ae1ced3',1,'linalg::cwiseClamp(const Vec3&lt; T &gt; &amp;a, const Vec3&lt; T &gt; &amp;min, const Vec3&lt; T &gt; &amp;max)'],['../namespacelinalg.html#a71a4b63cf53250421abe7a16df35aad7',1,'linalg::cwiseClamp(const Vec4&lt; T &gt; &amp;a, const Vec4&lt; T &gt; &amp;min, const Vec4&lt; T &gt; &amp;max)']]],
+  ['cwiseinverse_2',['cwiseInverse',['../structlinalg_1_1Vec3.html#aef616e4ebef895f207f56fd4cf95fa61',1,'linalg::Vec3']]],
+  ['cwisemax_3',['cwisemax',['../namespacelinalg.html#a654eb77e0a34885b74df1866d7b3d028',1,'linalg::cwiseMax(const Vec2&lt; T &gt; &amp;a, const Vec2&lt; T &gt; &amp;b)'],['../namespacelinalg.html#ae88c312f15002d070aa9791eef88bb41',1,'linalg::cwiseMax(const Vec3&lt; T &gt; &amp;a, const Vec3&lt; T &gt; &amp;b)'],['../namespacelinalg.html#a72fdfab812f5d3eaabfe13e57f5d8d45',1,'linalg::cwiseMax(const Vec4&lt; T &gt; &amp;a, const Vec4&lt; T &gt; &amp;b)']]],
+  ['cwisemin_4',['cwisemin',['../namespacelinalg.html#af6de439ced271cdbdb4b86ef6a07a21c',1,'linalg::cwiseMin(const Vec2&lt; T &gt; &amp;a, const Vec2&lt; T &gt; &amp;b)'],['../namespacelinalg.html#a1314c9d2e6f0e53ec28076c11af8ee30',1,'linalg::cwiseMin(const Vec3&lt; T &gt; &amp;a, const Vec3&lt; T &gt; &amp;b)'],['../namespacelinalg.html#a87d94a3b79a5ec1b7c90a39585db76f9',1,'linalg::cwiseMin(const Vec4&lt; T &gt; &amp;a, const Vec4&lt; T &gt; &amp;b)']]],
+  ['cwiseproduct_5',['cwiseproduct',['../namespacelinalg.html#a6b332d1898ed5c138c5488480dc5aa6a',1,'linalg::cwiseProduct(const Vec2&lt; T &gt; &amp;a, const Vec2&lt; T &gt; &amp;b)'],['../namespacelinalg.html#a9862b6151da2d87f9e54110a26b1e74a',1,'linalg::cwiseProduct(const Vec3&lt; T &gt; &amp;a, const Vec3&lt; T &gt; &amp;b)'],['../namespacelinalg.html#aea26e631d88b5881847350e172c17803',1,'linalg::cwiseProduct(const Vec4&lt; T &gt; &amp;a, const Vec4&lt; T &gt; &amp;b)']]]
 ];

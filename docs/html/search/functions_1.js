@@ -1,8 +1,6 @@
 var searchData=
 [
-  ['testaddresssanitizer_0',['testaddresssanitizer',['../SanitizerTests_8cpp.html#acee208af63c3c008d318e5761900b852',1,'testAddressSanitizer():&#160;SanitizerTests.cpp'],['../SanitizerTests_8hpp.html#acee208af63c3c008d318e5761900b852',1,'testAddressSanitizer():&#160;SanitizerTests.cpp']]],
-  ['testfloatdividebyzero_1',['testfloatdividebyzero',['../SanitizerTests_8cpp.html#ad80233e47b0338548c0d67f30ab58834',1,'testFloatDivideByZero():&#160;SanitizerTests.cpp'],['../SanitizerTests_8hpp.html#ad80233e47b0338548c0d67f30ab58834',1,'testFloatDivideByZero():&#160;SanitizerTests.cpp']]],
-  ['testleaksanitizer_2',['testleaksanitizer',['../SanitizerTests_8cpp.html#a7a397686641c46e9b83e0fc376cc938a',1,'testLeakSanitizer():&#160;SanitizerTests.cpp'],['../SanitizerTests_8hpp.html#a7a397686641c46e9b83e0fc376cc938a',1,'testLeakSanitizer():&#160;SanitizerTests.cpp']]],
-  ['testsignedintegeroverflow_3',['testsignedintegeroverflow',['../SanitizerTests_8cpp.html#a75eb0c48a654155ff544a2cb4c39e7a8',1,'testSignedIntegerOverflow():&#160;SanitizerTests.cpp'],['../SanitizerTests_8hpp.html#a75eb0c48a654155ff544a2cb4c39e7a8',1,'testSignedIntegerOverflow():&#160;SanitizerTests.cpp']]],
-  ['testundefinedbehaviorsanitizer_4',['testundefinedbehaviorsanitizer',['../SanitizerTests_8cpp.html#a51f9cf902ffaefa495e9bb0b8a2340dd',1,'testUndefinedBehaviorSanitizer():&#160;SanitizerTests.cpp'],['../SanitizerTests_8hpp.html#a51f9cf902ffaefa495e9bb0b8a2340dd',1,'testUndefinedBehaviorSanitizer():&#160;SanitizerTests.cpp']]]
+  ['data_0',['data',['../structlinalg_1_1Mat3.html#aa77d0f4d394d0dd1de1021898f2e3fd7',1,'linalg::Mat3::data()'],['../structlinalg_1_1Mat4.html#a6a239ee4d378200eda3f9c3c89f69f9f',1,'linalg::Mat4::data()']]],
+  ['determinant_1',['determinant',['../structlinalg_1_1Mat3.html#a4282e0a67a048518a4c9a4583fcc9933',1,'linalg::Mat3']]],
+  ['dot_2',['dot',['../namespacelinalg.html#aaf9264a79b45e6ce7cbb67ef72dad36c',1,'linalg::dot(const Vec2&lt; T &gt; &amp;a, const Vec2&lt; T &gt; &amp;b)'],['../namespacelinalg.html#a19367cee6a144047ec15cb90f117abd0',1,'linalg::dot(const Vec3&lt; T &gt; &amp;a, const Vec3&lt; T &gt; &amp;b)'],['../namespacelinalg.html#a7f9915c8c2fdcefc26b03fd0ae43391e',1,'linalg::dot(const Vec4&lt; T &gt; &amp;a, const Vec4&lt; T &gt; &amp;b)']]]
 ];
