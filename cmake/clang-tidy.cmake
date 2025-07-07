@@ -41,7 +41,7 @@ function(run_clang_tidy FIX_LINT)
 
     list(LENGTH CLANG_TIDY_TARGET_FILES num_files)
     if(num_files EQUAL 0)
-        add_custom_target(run-clang-tidy
+        add_custom_target(run-clang-tidy-linalg
             COMMAND ${CMAKE_COMMAND} -E echo "No source files found for clang-tidy. Skipping."
             COMMENT "No source files to lint."
             VERBATIM
@@ -63,7 +63,7 @@ function(run_clang_tidy FIX_LINT)
         list(APPEND CLANG_TIDY_ARGS --fix)
     endif()
 
-    add_custom_target(run-clang-tidy
+    add_custom_target(run-clang-tidy-linalg
         COMMAND ${CLANG_TIDY_EXECUTABLE} ${CLANG_TIDY_ARGS}
         WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
         COMMENT "Running clang-tidy static analysis"

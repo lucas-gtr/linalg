@@ -15,7 +15,7 @@ function(generate_doxygen_documentation)
 
     configure_file(${DOXYGEN_CONFIG_IN} ${DOXYGEN_CONFIG_OUT} @ONLY)
 
-    add_custom_target(generate-doc
+    add_custom_target(generate-doc-linalg
         COMMAND ${DOXYGEN_EXECUTABLE} ${DOXYGEN_CONFIG_OUT}
         WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
         COMMENT "Generating documentation with Doxygen"

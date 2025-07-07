@@ -11,7 +11,7 @@ BUILD_DIR ?= build
 
 INCLUDE_DIR := include
 
-TEST_EXECUTABLE_NAME ?= UnitTests
+TEST_EXECUTABLE_NAME ?= linalg_UnitTests
 
 # External tools (check availability at runtime)
 CMAKE := $(shell command -v cmake 2>/dev/null)
@@ -20,7 +20,7 @@ CLANG_TIDY := $(shell command -v clang-tidy 2>/dev/null)
 GCOVR := $(shell command -v gcovr 2>/dev/null)
 
 # Internal variables
-CMAKE_FLAGS ?= -DENABLE_UNIT_TESTS=ON
+CMAKE_FLAGS ?= -DLINALG_ENABLE_UNIT_TESTS=ON
 
 FIX ?= OFF
 
@@ -41,7 +41,7 @@ configure:
 
 build:
 	@echo "Building project..."
-	@cmake --build $(BUILD_DIR)
+	@cmake --build $(BUILD_DIR) --parallel
 
 run-tests: build
 	@echo "Running test executable $(TEST_EXECUTABLE_NAME)..."
@@ -59,14 +59,14 @@ coverage: run-tests
 format:
 	$(call check_tool,CLANG_FORMAT,clang-format)
 	@echo "Running clang-format..."
-	@cmake -S . -B $(BUILD_DIR) -DFILES_TO_CHECK="$(FILES)" -DENABLE_CLANG_FORMAT=ON -DENABLE_CLANG_TIDY=OFF
-	@cmake --build $(BUILD_DIR) --target run-clang-format
+	@cmake -S . -B $(BUILD_DIR) -DFILES_TO_CHECK="$(FILES)" -DLINALG_ENABLE_CLANG_FORMAT=ON -DLINALG_ENABLE_CLANG_TIDY=OFF
+	@cmake --build $(BUILD_DIR) --target run-clang-format-linalg
 
 lint:
 	$(call check_tool,CLANG_TIDY,clang-tidy)
 	@echo "Running clang-tidy (FIX=$(FIX))..."
-	@cmake -S . -B $(BUILD_DIR) -DFILES_TO_CHECK="$(FILES)" -DENABLE_CLANG_FORMAT=OFF -DENABLE_CLANG_TIDY=ON -DENABLE_FIX_CLANG_TIDY=$(FIX)
-	@cmake --build $(BUILD_DIR) --target run-clang-tidy
+	@cmake -S . -B $(BUILD_DIR) -DFILES_TO_CHECK="$(FILES)" -DLINALG_ENABLE_CLANG_FORMAT=OFF -DLINALG_ENABLE_CLANG_TIDY=ON -DLINALG_ENABLE_FIX_CLANG_TIDY=$(FIX)
+	@cmake --build $(BUILD_DIR) --target run-clang-tidy-linalg
 
 format-and-lint: format lint
 	@echo "Formatting and linting completed."
@@ -75,8 +75,8 @@ format-and-lint: format lint
 
 documentation:
 	@echo "Generating documentation with Doxygen..."
-	@cmake -S . -B $(BUILD_DIR) -DENABLE_DOXYGEN=ON
-	@cmake --build $(BUILD_DIR) --target generate-doc
+	@cmake -S . -B $(BUILD_DIR) -DLINALG_ENABLE_DOXYGEN=ON
+	@cmake --build $(BUILD_DIR) --target generate-doc-linalg
 
 # ------------------ Cleanup ------------------
 
