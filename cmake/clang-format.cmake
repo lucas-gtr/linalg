@@ -47,7 +47,7 @@ function(run_clang_format)
 
     string(JOIN ";" CLANG_FORMAT_FILE_ARGS ${CLANG_FORMAT_TARGET_FILES})
     
-    add_custom_target(run-clang-format
+    add_custom_target(run-clang-format-linalg
         COMMAND ${CLANG_FORMAT} 
         -i
         -verbose
