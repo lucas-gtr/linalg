@@ -390,15 +390,15 @@ template <typename T> struct alignas(linalg::MatAlignment<T, 4>::VALUE) Mat4 {
 
   /**
    * @brief Returns a perspective projection matrix.
-   * @param fovY The vertical field of view in radians.
+   * @param fov_y The vertical field of view in radians.
    * @param aspect The aspect ratio (width/height).
    * @param near The near clipping plane.
    * @param far The far clipping plane.
    * @return A Mat4 object representing the perspective projection matrix.
    * @tparam T The type of the elements in the matrix.
    */
-  static Mat4 Perspective(T fovY, T aspect, T near, T far) {
-    T    inv_tan_half_fov_y = 1.0 / std::tan(fovY / 2);
+  static Mat4 Perspective(T fov_y, T aspect, T near, T far) {
+    T    inv_tan_half_fov_y = 1.0 / std::tan(fov_y / 2);
     Mat4 persp;
     persp.m[0][0] = inv_tan_half_fov_y / aspect;
     persp.m[1][1] = inv_tan_half_fov_y;
