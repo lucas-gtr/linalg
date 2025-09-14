@@ -3,6 +3,8 @@
 
 using namespace linalg;
 
+constexpr double EPS = 1e-9;
+
 TEST(LinConversionTest, ToVec3d) {
     Vec4d v4 = {1.0, 2.0, 3.0, 4.0};
     Vec3d v3 = toVec3(v4);
@@ -71,6 +73,78 @@ TEST(LinScalarTest, ScalarMultiplication) {
     EXPECT_EQ(0.5 * v4, Vec4d(0.5, 1.0, 1.5, 2.0));
 }
 
+TEST(LinalgTest, ReflectVec3) {
+    Vec3d incident = {1.0, -1.0, 0.0};
+    Vec3d normal = {0.0, 1.0, 0.0};
+    Vec3d reflected = incident - 2 * dot(incident, normal) * normal;
+    EXPECT_EQ(reflected, Vec3d(1.0, 1.0, 0.0));
+
+    incident = {0.0, -1.0, -1.0};
+    normal = {0.0, 0.0, 1.0};
+    reflected = incident - 2 * dot(incident, normal) * normal;
+    EXPECT_EQ(reflected, Vec3d(0.0, -1.0, 1.0));
+}
+
+TEST(RefractTest, NormalIncidenceAirToGlass) {
+  Vec3<double> I(0, 0, -1);
+  Vec3<double> N(0, 0, 1);
+  double eta = 1.0 / 1.5;
+  Vec3<double> T = refract(I, N, eta);
+  EXPECT_NEAR(T.x, 0.0, EPS);
+  EXPECT_NEAR(T.y, 0.0, EPS);
+  EXPECT_NEAR(T.z, -1.0, EPS);
+}
+
+TEST(RefractTest, NormalIncidenceGlassToAir) {
+  Vec3<double> I(0, 0, -1);
+  Vec3<double> N(0, 0, 1);
+  double eta = 1.5 / 1.0;
+  Vec3<double> T = refract(I, N, eta);
+  EXPECT_NEAR(T.x, 0.0, EPS);
+  EXPECT_NEAR(T.y, 0.0, EPS);
+  EXPECT_NEAR(T.z, -1.0, EPS);
+}
+
+TEST(RefractTest, ObliqueIncidenceAirToGlass) {
+  Vec3<double> I(0, std::sin(M_PI/6), -std::cos(M_PI/6));
+  I = I.normalized();
+  Vec3<double> N(0, 0, 1);
+  double eta = 1.0 / 1.5;
+  Vec3<double> T = refract(I, N, eta);
+  EXPECT_LT(T.z, 0.0);
+}
+
+TEST(RefractTest, ObliqueIncidenceGlassToAirNoTIR) {
+  Vec3<double> I(0, std::sin(M_PI/6), -std::cos(M_PI/6));
+  I = I.normalized();
+  Vec3<double> N(0, 0, 1);
+  double eta = 1.5 / 1.0;
+  Vec3<double> T = refract(I, N, eta);
+  EXPECT_LT(T.z, 0.0);
+}
+
+TEST(RefractTest, TotalInternalReflection) {
+  Vec3<double> I(0, std::sin(M_PI/3), -std::cos(M_PI/3));
+  I = I.normalized();
+  Vec3<double> N(0, 0, 1);
+  double eta = 1.5 / 1.0;
+  Vec3<double> T = refract(I, N, eta);
+  Vec3<double> R = reflect(I, N);
+  EXPECT_NEAR(T.x, R.x, EPS);
+  EXPECT_NEAR(T.y, R.y, EPS);
+  EXPECT_NEAR(T.z, R.z, EPS);
+}
+
+TEST(RefractTest, EtaEqualOne) {
+  Vec3<double> I(0, 0, -1);
+  Vec3<double> N(0, 0, 1);
+  double eta = 1.0;
+  Vec3<double> T = refract(I, N, eta);
+  EXPECT_NEAR(T.x, I.x, EPS);
+  EXPECT_NEAR(T.y, I.y, EPS);
+  EXPECT_NEAR(T.z, I.z, EPS);
+}
+
 TEST(LinMatrixTest, Mat3dVec3dMultiplication) {
     Mat3d m({{1, 2, 3}, {0, 1, 4}, {5, 6, 0}});
     Vec3d v = {1, 2, 3};
@@ -94,5 +168,5 @@ TEST(LinRotationTest, RotationMatrixOrthogonality) {
     Mat3d identity = rot * transposed;
     for (int i = 0; i < 3; ++i)
         for (int j = 0; j < 3; ++j)
-            EXPECT_NEAR(identity.m[i][j], i == j ? 1.0 : 0.0, 1e-9);
+            EXPECT_NEAR(identity.m[i][j], i == j ? 1.0 : 0.0, EPS);
 }

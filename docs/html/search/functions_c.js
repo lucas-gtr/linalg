@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['vec2_0',['vec2',['../structlinalg_1_1Vec2.html#a22a2a4198b41b8455c9a14e354127f65',1,'linalg::Vec2::Vec2() noexcept'],['../structlinalg_1_1Vec2.html#a3ba7d87fe324b81aa85580bb1ada1982',1,'linalg::Vec2::Vec2(T value) noexcept'],['../structlinalg_1_1Vec2.html#a40c5be81d275e6bdeb1af3bd9be34106',1,'linalg::Vec2::Vec2(T x, T y) noexcept'],['../structlinalg_1_1Vec2.html#a57af9eda477016a3703cf4c8c3d54333',1,'linalg::Vec2::Vec2(const Vec2&lt; U &gt; &amp;other) noexcept']]],
-  ['vec3_1',['vec3',['../structlinalg_1_1Vec3.html#a9b6e00dd284477deea321afdb2b7f28d',1,'linalg::Vec3::Vec3() noexcept'],['../structlinalg_1_1Vec3.html#af45d2b0cf0aaf26bf1d6cbe3077a8bfe',1,'linalg::Vec3::Vec3(T value) noexcept'],['../structlinalg_1_1Vec3.html#aaece717b66ae7874dfa41732246a7dd5',1,'linalg::Vec3::Vec3(T x, T y, T z) noexcept'],['../structlinalg_1_1Vec3.html#a28aac68909e6cb6526bf6e6ede25d5c6',1,'linalg::Vec3::Vec3(const Vec3&lt; U &gt; &amp;other) noexcept']]],
-  ['vec4_2',['vec4',['../structlinalg_1_1Vec4.html#abd402e7c12d1a11d7c01d0e09afc80b8',1,'linalg::Vec4::Vec4() noexcept'],['../structlinalg_1_1Vec4.html#a92824c5bb9de2531d29e24eb3a45a4e8',1,'linalg::Vec4::Vec4(T value) noexcept'],['../structlinalg_1_1Vec4.html#aad439683f6bb9a8a47bf6186fdf8a794',1,'linalg::Vec4::Vec4(T x, T y, T z, T w) noexcept'],['../structlinalg_1_1Vec4.html#a196aeb3699aaefb769fd3e578e6385f3',1,'linalg::Vec4::Vec4(const Vec4&lt; U &gt; &amp;other) noexcept']]]
+  ['topleft3x3_0',['topLeft3x3',['../structlinalg_1_1Mat4.html#a6fa2aff46749410b72095e07e612ac7d',1,'linalg::Mat4']]],
+  ['tovec3_1',['toVec3',['../namespacelinalg.html#a4b6a72a2ba1b2b21e61d79d376da776a',1,'linalg']]],
+  ['tovec4_2',['toVec4',['../namespacelinalg.html#a3abb77e840fd77fe1562fa7a0748fb74',1,'linalg']]],
+  ['transposed_3',['transposed',['../structlinalg_1_1Mat3.html#a58805af94771c8cdf4087d67c7d2d0e2',1,'linalg::Mat3::transposed()'],['../structlinalg_1_1Mat4.html#a0fe0c3295787a2a2ec015550d3af02ee',1,'linalg::Mat4::transposed()']]]
 ];

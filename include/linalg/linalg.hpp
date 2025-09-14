@@ -229,6 +229,35 @@ template <typename T> inline Vec3<T> operator*(const Mat3<T>& mat, const Vec3<T>
 }
 
 /**
+ * @brief Reflects a vector I around a normal N.
+ * @param incident The incident vector (must be normalized).
+ * @param normal The normal vector (must be normalized).
+ * @return The reflected vector.
+ */
+template <typename T> inline Vec3<T> reflect(const Vec3<T>& incident, const Vec3<T>& normal) {
+  return incident - 2 * dot(incident, normal) * normal;
+}
+
+/**
+ * @brief Refracts a vector I through a surface with normal N and refractive
+ * index ratio eta.
+ * @param incident The incident vector (must be normalized).
+ * @param normal The normal vector (must be normalized).
+ * @param eta The ratio of refractive indices (n1 / n2).
+ * @return The refracted vector, or the reflected vector if total internal
+ * reflection occurs.
+ */
+template <typename T> inline Vec3<T> refract(const Vec3<T>& incident, const Vec3<T>& normal, T eta) {
+  const T cos_i  = -dot(normal, incident);
+  const T sin2_t = eta * eta * (1.0 - cos_i * cos_i);
+  if(sin2_t > 1.0) {
+    return reflect(incident, normal);
+  }
+  const T cos_t = std::sqrt(1.0 - sin2_t);
+  return (eta * incident + (eta * cos_i - cos_t) * normal).normalized();
+}
+
+/**
  * @brief Multiplies a Mat4 matrix by a Vec4 vector.
  * @param mat The Mat4 matrix to multiply with.
  * @param vec The Vec4 vector to multiply.
